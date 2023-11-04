@@ -39,12 +39,16 @@ def predict():
 
     x_predict=model.predict(mfccs_scaled_features) 
     predicted_label=np.argmax(x_predict,axis=1)
-    print(predicted_label)
+    #predicted_label=str(predicted_label)
+
+    #Now setting the list of values:
+    names=['asavari', 'bageshree', 'bhairavi', 'bhoopali', 'darbari', 'malkauns', 'sarang', 'yaman']
+    #print(predicted_label)
     #prediction_class = labelencoder.inverse_transform(predicted_label) 
-    print(prediction_class)
+    predicted_value=names[predicted_label[0]]
     os.remove(file_name)
 
-    data={"prediction":predicted_label}
+    data={"prediction":predicted_value}
     return jsonify(data)
 
 if __name__=="__main__":
